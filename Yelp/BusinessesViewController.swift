@@ -8,13 +8,30 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, FiltersViewControllerDelegate, UIScrollViewDelegate {
 
     var businesses: [Business]!
+    var filteredBusinesses: [Business]!
+    var status: Bool = false
+    var isMoreDataLoading = false
+    
+    // creating searchBar
+    var searchController: UISearchController!
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        filteredBusinesses = businesses
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        navigationItem.titleView = searchController.searchBar
+        definesPresentationContext = true
+        
+       
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -24,13 +41,14 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
-        
+            
             for business in businesses {
                 print(business.name!)
                 print(business.address!)
+                print(business.distance!)
+                print(business.categories!)
             }
         })
-
 /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -42,7 +60,25 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         }
 */
     }
-
+    
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if filteredBusinesses == nil {
+            filteredBusinesses = businesses
+        }
+        if let searchText = searchController.searchBar.text {
+            if(searchText == "") {
+                businesses = filteredBusinesses
+                tableView.reloadData()
+            } else {
+                businesses = searchText.isEmpty ? businesses : businesses?.filter({ (business:Business) -> Bool in
+                    business.name!.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
+                });
+                tableView.reloadData()
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,14 +98,40 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    /*
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                isMoreDataLoading = true
+               // loadMoreData()
+            }
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let navigationController = segue.destinationViewController as! UINavigationController
+        let filtersViewController = navigationController.topViewController as! FiltersViewController
+        
+        filtersViewController.delegate = self
     }
-    */
+    
+    func filtersViewController(fltersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
+        var categories = filters["categories"] as? [String]
+        Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: nil) {(businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            self.tableView.reloadData()
+            
+        }
+    }
+    
 
 }
