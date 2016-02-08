@@ -74,25 +74,31 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 //            }
 //        }
 
+        updateSearchResultsForSearchController(searchController)
+    
     }
     
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if filteredBusinesses == nil {
+            print("onCancel")
             filteredBusinesses = businesses
+            tableView.reloadData()
         }
         if let searchText = searchController.searchBar.text {
             if(searchText == "") {
-                businesses = filteredBusinesses
+                print("onUpdate")
+                filteredBusinesses = businesses
                 tableView.reloadData()
             } else {
-                businesses = searchText.isEmpty ? businesses : businesses?.filter({ (business:Business) -> Bool in
+                filteredBusinesses = searchText.isEmpty ? businesses : businesses?.filter({ (business:Business) -> Bool in
                     business.name!.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
                 });
                 tableView.reloadData()
-            }
+           }
         }
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -101,6 +107,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if filteredBusinesses != nil {
+            print("on search")
             return filteredBusinesses!.count
         }else{
             return 0
