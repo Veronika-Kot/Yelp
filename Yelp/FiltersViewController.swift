@@ -22,6 +22,12 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var navigationBarAppearace = UINavigationBar.appearance()
+        navigationController!.navigationBar.barTintColor = UIColor(red: 250.0/255.0, green: 102.0/255.0, blue: 72.0/255.0, alpha: 1)
+//        navigationController!.navigationBar.tintColor = UIColor(red: 235.0/255.0, green: 222.0/255.0, blue: 190.0/255.0, alpha: 1)
+        navigationController!.navigationBar.tintColor = UIColor(red: 102.0/255.0, green: 36.0/255.0, blue: 67.0/255.0, alpha: 1)
+        navigationController!.navigationBar.titleTextAttributes = ([NSFontAttributeName: UIFont(name: "BradleyHandITCTT-Bold", size: 36)!, NSForegroundColorAttributeName: UIColor(red: 235.0/255.0, green: 222.0/255.0, blue: 190.0/255.0, alpha: 1)])
+        
         categories = yelpCategories()
         
         tableView.delegate = self

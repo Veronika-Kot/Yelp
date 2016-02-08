@@ -32,6 +32,8 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         navigationController!.navigationBar.titleTextAttributes = ([NSFontAttributeName: UIFont(name: "BradleyHandITCTT-Bold", size: 36)!, NSForegroundColorAttributeName: UIColor(red: 235.0/255.0, green: 222.0/255.0, blue: 190.0/255.0, alpha: 1)])
+
         nameLabel.text = business.name
         if let imageUrl = business.imageURL {
             thumbImageView.setImageWithURL(imageUrl)
@@ -59,7 +61,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
     }
     
     func goToLocation(location: CLLocation) {
-        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let span = MKCoordinateSpanMake(0.008, 0.008)
         let region = MKCoordinateRegionMake(location.coordinate, span)
         mapView.setRegion(region, animated: false)
     }
@@ -75,7 +77,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
     func addAnnotationAtCoordinate(latitude latitude: Double, longitude: Double, title: String) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-        annotation.title = "title"
+        annotation.title = business.name
         mapView.addAnnotation(annotation)
     }
 

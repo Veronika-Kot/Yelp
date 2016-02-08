@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Yelp-->
+        <!--Businesses View Controller-->
         <scene sceneID="5L9-Uz-lNK">
             <objects>
                 <viewController id="2xI-yr-O5N" customClass="BusinessesViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
@@ -124,7 +124,7 @@
                             <constraint firstItem="PCK-xX-yZH" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="rIb-KD-nTz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Yelp" id="tgY-1t-6eL">
+                    <navigationItem key="navigationItem" id="tgY-1t-6eL">
                         <barButtonItem key="leftBarButtonItem" title="Filters" id="hah-fb-EVG">
                             <connections>
                                 <segue destination="ld9-e7-0jq" kind="modal" identifier="filters" id="cZZ-Sv-FTR"/>
@@ -139,7 +139,7 @@
             </objects>
             <point key="canvasLocation" x="1485" y="338"/>
         </scene>
-        <!--Details View Controller-->
+        <!--Yelpy-->
         <scene sceneID="HUc-nW-gBy">
             <objects>
                 <viewController id="eR8-Rz-v2A" customClass="DetailsViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
@@ -245,7 +245,7 @@
                             <constraint firstAttribute="trailing" secondItem="g9b-C1-m7c" secondAttribute="trailing" constant="8" id="v26-mj-ilg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="st8-Ka-nl9"/>
+                    <navigationItem key="navigationItem" title="Yelpy" id="st8-Ka-nl9"/>
                     <connections>
                         <outlet property="Phone" destination="DpU-4B-DQD" id="FA3-0c-7Jf"/>
                         <outlet property="addressLabel" destination="iTR-z9-B3s" id="vSw-zV-RWi"/>
@@ -288,6 +288,8 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kkZ-vJ-2qI">
                                                     <rect key="frame" x="247" y="33" width="51" height="31"/>
+                                                    <color key="tintColor" red="0.75943023989898983" green="0.75943023989898983" blue="0.75943023989898983" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="onTintColor" red="0.52839330808080809" green="0.19101811976204663" blue="0.34915562844811465" alpha="1" colorSpace="calibratedRGB"/>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eq-Zt-ZdL">
                                                     <rect key="frame" x="27" y="38" width="42" height="21"/>
@@ -376,4 +378,5 @@
             <point key="canvasLocation" x="1891" y="338"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.39646464646464652" green="0.29103998882519555" blue="0.23914300449347051" alpha="1" colorSpace="calibratedRGB"/>
 </document>

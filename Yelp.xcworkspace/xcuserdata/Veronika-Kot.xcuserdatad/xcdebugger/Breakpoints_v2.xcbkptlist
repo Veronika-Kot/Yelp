@@ -2,4 +2,52 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwitchCell.swift"
+            timestampString = "476616163.829552"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yelp.SwitchCell.init (Yelp.SwitchCell.Type)(style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; Yelp.SwitchCell"
+                  moduleName = "Yelp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Veronika-Kot/GitHub/Yelp/SwitchCell.swift"
+                  timestampString = "476616203.163496"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "58">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Yelp.SwitchCell.init (Yelp.SwitchCell.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Yelp.SwitchCell&gt;"
+                  moduleName = "Yelp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Veronika-Kot/GitHub/Yelp/SwitchCell.swift"
+                  timestampString = "476616203.163731"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
