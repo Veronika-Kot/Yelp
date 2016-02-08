@@ -3,7 +3,6 @@
 //  Yelp
 //
 //  Created by Veronika Kotckovich on 2/5/16.
-//  Copyright © 2016 Timothy Lee. All rights reserved.
 //
 
 import UIKit

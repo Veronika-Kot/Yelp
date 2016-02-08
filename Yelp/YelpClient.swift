@@ -2,8 +2,6 @@
 //  YelpClient.swift
 //  Yelp
 ///Users/Veronika-Kot/GitHub/ios_yelp_swift-master/Podfile
-//  Created by Timothy Lee on 9/19/14.
-//  Copyright (c) 2014 Timothy Lee. All rights reserved.
 //
 
 import UIKit

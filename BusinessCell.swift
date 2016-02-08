@@ -2,8 +2,6 @@
 //  BusinessCell.swift
 //  Yelp
 //
-//  Created by Veronika Kotckovich on 2/4/16.
-//  Copyright © 2016 Timothy Lee. All rights reserved.
 //
 
 import UIKit
@@ -22,7 +20,9 @@ class BusinessCell: UITableViewCell {
     var business: Business! {
         didSet {
             nameLabel.text = business.name
-            thumbImageView.setImageWithURL(business.imageURL!)
+            if let imageUrl = business.imageURL {
+                thumbImageView.setImageWithURL(imageUrl)
+            }
             categoriesLabel.text = business.categories
             addressLabel.text = business.address
             rewiewsCountLabel.text = "\(business.reviewCount!) Reviews"

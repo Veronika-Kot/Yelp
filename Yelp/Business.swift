@@ -2,8 +2,6 @@
 //  Business.swift
 //  Yelp
 //
-//  Created by Timothy Lee on 4/23/15.
-//  Copyright (c) 2015 Timothy Lee. All rights reserved.
 //
 
 import UIKit
@@ -11,15 +9,21 @@ import UIKit
 class Business: NSObject {
     let name: String?
     let address: String?
+    let phone: String?
     let imageURL: NSURL?
     let categories: String?
     let distance: String?
     let ratingImageURL: NSURL?
     let reviewCount: NSNumber?
+    let neighborhoods: String?
+    let coordinate: (Double?, Double?)
+    let crossStreets: String?
     
     init(dictionary: NSDictionary) {
-        name = dictionary["name"] as? String
         
+        name = dictionary["name"] as? String
+        phone = dictionary["display_phone"] as? String
+        crossStreets = dictionary["location.cross_streets"] as? String
         let imageURLString = dictionary["image_url"] as? String
         if imageURLString != nil {
             imageURL = NSURL(string: imageURLString!)!
@@ -57,6 +61,19 @@ class Business: NSObject {
             categories = nil
         }
         
+        let neighborhoodsArray = dictionary["neighborhoods"] as? [[String]]
+        if neighborhoodsArray != nil {
+            var neighborhoodNames = [String]()
+            for neighborhood in neighborhoodsArray! {
+                let neighborhoodName = neighborhood[0]
+                neighborhoodNames.append(neighborhoodName)
+            }
+            neighborhoods = neighborhoodNames.joinWithSeparator(", ")
+        } else {
+            neighborhoods = nil
+        }
+
+        
         let distanceMeters = dictionary["distance"] as? NSNumber
         if distanceMeters != nil {
             let milesPerMeter = 0.000621371
@@ -72,7 +89,12 @@ class Business: NSObject {
             ratingImageURL = nil
         }
         
+        
         reviewCount = dictionary["review_count"] as? NSNumber
+        
+        let latitude = dictionary.valueForKeyPath("location.coordinate.latitude")
+        let longitude = dictionary.valueForKeyPath("location.coordinate.longitude")
+        coordinate = (latitude as? Double, longitude as? Double)
     }
     
     class func businesses(array array: [NSDictionary]) -> [Business] {
